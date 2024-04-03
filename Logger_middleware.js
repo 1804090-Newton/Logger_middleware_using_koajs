@@ -1,5 +1,8 @@
 const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
 const app = new Koa();
+
+app.use(bodyParser());
 
 app.use(async (ctx, next) => {
   const start = Date.now();
@@ -10,7 +13,10 @@ app.use(async (ctx, next) => {
 
 
 app.use(async ctx => {
-  ctx.body = 'Hi , I am Newton. I have developed this app using Koa.js!. this is a middleware logger. It will log the time taken to process the request. ';
+    ctx.status = 200;
+  ctx.body = ' this is a middleware logger. ';
+  console.log(ctx.response.status);
+  console.log(ctx.request.body);
 });
 
 const PORT = process.env.PORT || 8080;
